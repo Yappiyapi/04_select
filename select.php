@@ -58,4 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   echo $animal['type'] .  'の' . $animal['classifcation'] . 'ちゃん' .'<br>' . $animal['description'] . '<br>' . $animal['birthday'] . ' 生まれ' . '<br>' . '出身地 ' . $animal['birthplace'] . '<hr>';
   }
 
+
+  
 ?>
