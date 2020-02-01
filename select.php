@@ -17,7 +17,7 @@
     </form>
     <?php foreach ($animals as $animal): ?>
     <?php echo h($animls['description']);?>
-    <?php endforeach ; ?>
+    <?php endforeach; ?>
   </p>
 </body>
 </html>
@@ -34,8 +34,6 @@ try {
   echo $e->getMessage();
   exit;
 }
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $keyword = $_GET["keyword"];
