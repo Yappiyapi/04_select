@@ -1,7 +1,6 @@
 <?php
 
 
-
 define('DSN', 'mysql:host=mysql;dbname=pet_shop;charset=utf8;');
 define('USER', 'staff');
 define('PASSWORD', '9999');
