@@ -14,15 +14,15 @@ try {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $keyword = $_GET["keyword"];
 
-  if ($keyword == "") {
-    $sql = "select * from animals";
-    $stmt = $dbh->prepare($sql);
-  } else {
-    $sql = "select * from animals where description LIKE :keyword";
-    $stmt = $dbh->prepare($sql);
-    $keyword = '%' . $keyword . '%';
-    $stmt->bindParam(":keyword", $keyword);
-  }
+if ($keyword == "") {
+  $sql = "select * from animals";
+  $stmt = $dbh->prepare($sql);
+} else {
+  $sql = "select * from animals where description LIKE :keyword";
+  $stmt = $dbh->prepare($sql);
+  $keyword = '%' . $keyword . '%';
+  $stmt->bindParam(":keyword", $keyword);
+}
   $stmt->execute();
   $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
