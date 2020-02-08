@@ -6,25 +6,25 @@ define('PASSWORD', '9999');
 
 try {
   $dbh = new PDO(DSN, USER, PASSWORD);
-} catch (PDOException $e) {
-  echo $e->getMessage();
+} catch (PSOException $e) {
+  echo $e->getMeaasge();
   exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $keyword = $_GET["keyword"];
 
-  if ($keyword == "") {
-    $sql = "select * from animals";
-    $stmt = $dbh->prepare($sql);
-  } else {
-    $sql = "select * from animals where description LIKE :keyword";
-    $stmt = $dbh->prepare($sql);
-    $keyword = '%'.$keyword.'%';
-    $stmt->bindParam(":keyword", $keyword);
-  }
-    $stmt->execute();
-    $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ($keyword == "") {
+  $sql = "select * from animals";
+  $stmt = $dbh->prepare($sql);
+} else {
+  $sql = "select * from animals where description LIKE :keyword";
+  $stmt = $dbh->prepare($sql);
+  $keyword = '%' . $keyword . '%';
+  $stmt->bindParam(":keyword", $keyword);
+}
+  $stmt->execute();
+  $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <body>
   <h1>本日のご紹介ペット！</h1>
   <p>
-    <form action="" method="GET">
+    <form action="" method="get">
       <label for="keyword">キーワード:
-      <input type="text" name="keyword" placeholder="キーワードの入力">
+        <input type="text" name="keyword" placeholder="キーワードの入力">
       </label>
       <input type="submit" value="検索">
     </form>
-    <?php foreach ($animals as $animal) : ?>
+    <?php foreach($animals as $animal) :?>
     <?php echo ($animal['type'] .  'の' . $animal['classifcation'] . 'ちゃん' .'<br>' . $animal['description'] . '<br>' . $animal['birthday'] . ' 生まれ' . '<br>' . '出身地 ' . $animal['birthplace'] . '<hr>'); ?>
     <?php endforeach; ?>
   </p>
